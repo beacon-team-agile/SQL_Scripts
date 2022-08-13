@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS Facility (
     `description` VARCHAR(500) DEFAULT "",
     quantity INT NOT NULL DEFAULT 0
 );
+
 CREATE TABLE IF NOT EXISTS FacilityReport (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	facility_id INT NOT NULL,
