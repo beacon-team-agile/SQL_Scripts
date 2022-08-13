@@ -33,14 +33,14 @@ CREATE TABLE IF NOT EXISTS `User`(
     `password` VARCHAR(200) NOT NULL,
     create_date VARCHAR(100),
     last_modification_date VARCHAR(100),
-    active_flag BOOLEAN
+    active_flag BOOLEAN NOT NULL DEFAULT 1 #Default - true
 );
 
 CREATE TABLE IF NOT EXISTS `UserRole`(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	user_id INT NOT NULL,
-    email VARCHAR(100),
-    expiration_date VARCHAR(100),
+    role_id INT NOT NULL,
+    active_flag BOOLEAN NOT NULL DEFAULT 1, #Default - true
     create_by VARCHAR(100),
     last_modification_date VARCHAR(100)
 );
