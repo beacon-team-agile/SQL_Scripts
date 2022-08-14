@@ -41,11 +41,26 @@ CREATE TABLE IF NOT EXISTS `UserRole`(
 	user_id INT NOT NULL,
     role_id INT NOT NULL,
     active_flag BOOLEAN NOT NULL DEFAULT 1, #Default - true
-    create_by VARCHAR(100),
+    create_date VARCHAR(100),
     last_modification_date VARCHAR(100)
 );
+
+-- ALTER TABLE `UserRole` RENAME COLUMN create_by TO create_date;
 
 SELECT * FROM RegistrationToken;
 SELECT * FROM `Role`;
 SELECT * FROM `User`;
 SELECT * FROM `UserRole`;
+
+#Role setups
+INSERT INTO `Role` (role_name, role_description, create_date, last_modification_date) VALUES 
+('employee', 'A role for employee with lowest authority', NOW(), NOW()),
+('hr', 'A role for employee with some authority', NOW(), NOW()),
+('admin', 'A role for admin with highest authority', NOW(), NOW());
+
+#Add a single HR
+INSERT INTO `User` (user_name, email, `password`, create_date, last_modification_date, active_flag) VALUES 
+('hr-test', 'test_hr@beaconfire.com', '1234', NOW(), NOW(), 1);
+
+INSERT INTO `UserRole` (user_id, role_id, active_flag, create_date, last_modification_date) VALUES 
+(1, 2, 1, NOW(), NOW());
