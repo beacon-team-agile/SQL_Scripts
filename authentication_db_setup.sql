@@ -28,13 +28,16 @@ CREATE TABLE IF NOT EXISTS `Role`(
 
 CREATE TABLE IF NOT EXISTS `User`(
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	user_name VARCHAR(200) NOT NULL,
+	username VARCHAR(200) NOT NULL,
     email VARCHAR(100) NOT NULL,
     `password` VARCHAR(200) NOT NULL,
     create_date VARCHAR(100),
     last_modification_date VARCHAR(100),
     active_flag BOOLEAN NOT NULL DEFAULT 1 #Default - true
 );
+
+ALTER TABLE `User` RENAME COLUMN user_name TO username;
+ALTER TABLE `User` DROP COLUMN username;
 
 CREATE TABLE IF NOT EXISTS `UserRole`(
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,6 +54,8 @@ SELECT * FROM RegistrationToken;
 SELECT * FROM `Role`;
 SELECT * FROM `User`;
 SELECT * FROM `UserRole`;
+
+COUNT("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIkMmEkMTAkdnJTYUdROFh5eC8vR0xBakZiT3d1LnE0YjBwYndFWjJrdG81b1Z3eWNKRDdEdk5nQlcuSmEiLCJwZXJtaXNzaW9ucyI6W119.SbO-zJt4tA5qXmRQBpWhelNRNrhFbDUvPAKBN2kmDXQ");
 
 #Role setups
 INSERT INTO `Role` (role_name, role_description, create_date, last_modification_date) VALUES 

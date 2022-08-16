@@ -38,6 +38,8 @@ CREATE TABLE IF NOT EXISTS FacilityReport (
     `status` BOOLEAN NOT NULL DEFAULT 0
 );
 
+ALTER TABLE FacilityReport MODIFY employee_id VARCHAR(100);
+
 CREATE TABLE IF NOT EXISTS FacilityReportDetail (
     id INT AUTO_INCREMENT PRIMARY KEY,
     facility_report_id INT NOT NULL,
@@ -46,6 +48,8 @@ CREATE TABLE IF NOT EXISTS FacilityReportDetail (
     create_date  VARCHAR(100),
     last_modification_date  VARCHAR(100)
 );
+
+ALTER TABLE FacilityReportDetail MODIFY employee_id VARCHAR(100);
 
 SELECT * FROM House;
 SELECT * FROM Landlord;
