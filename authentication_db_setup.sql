@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `User`(
     `password` VARCHAR(200) NOT NULL,
     create_date VARCHAR(100),
     last_modification_date VARCHAR(100),
-    active_flag BOOLEAN NOT NULL DEFAULT 1 #Default - true
+    active_flag BOOLEAN NOT NULL DEFAULT 0 #Default - false
 );
-
+ALTER TABLE `User` ALTER active_flag SET DEFAULT 0;
 ALTER TABLE `User` RENAME COLUMN user_name TO username;
 ALTER TABLE `User` DROP COLUMN username;
 
@@ -55,8 +55,6 @@ SELECT * FROM `Role`;
 SELECT * FROM `User`;
 SELECT * FROM `UserRole`;
 
-COUNT("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIkMmEkMTAkdnJTYUdROFh5eC8vR0xBakZiT3d1LnE0YjBwYndFWjJrdG81b1Z3eWNKRDdEdk5nQlcuSmEiLCJwZXJtaXNzaW9ucyI6W119.SbO-zJt4tA5qXmRQBpWhelNRNrhFbDUvPAKBN2kmDXQ");
-
 #Role setups
 INSERT INTO `Role` (role_name, role_description, create_date, last_modification_date) VALUES 
 ('employee', 'A role for employee with lowest authority', NOW(), NOW()),
@@ -69,3 +67,19 @@ INSERT INTO `User` (user_name, email, `password`, create_date, last_modification
 
 INSERT INTO `UserRole` (user_id, role_id, active_flag, create_date, last_modification_date) VALUES 
 (1, 2, 1, NOW(), NOW());
+
+DELETE FROM RegistrationToken WHERE id = 1;
+
+ALTER TABLE RegistrationToken DROP COLUMN create_by;
+ALTER TABLE RegistrationToken DROP COLUMN create_by_user;
+ALTER TABLE RegistrationToken DROP FOREIGN KEY FK5xqfepakhepf2iupullx15huk;
+ALTER TABLE RegistrationToken DROP COLUMN createBy;
+
+ALTER TABLE  `Role` DROP FOREIGN KEY FKtk0065mekgpvul3668qp89gvt;
+ALTER TABLE  `Role` DROP COLUMN roles;
+ALTER TABLE  `User` DROP COLUMN `status`;
+
+INSERT INTO `UserRole` (user_id, role_id, active_flag, create_date, last_modification_date) VALUES 
+(2, 1, 1, NOW(), NOW());
+
+DELETE FROM `User` WHERE id >= 3;
